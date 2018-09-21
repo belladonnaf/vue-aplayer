@@ -75,52 +75,52 @@
   </div>
 </template>
 <script>
-  import Aplayer from '../vue-aplayer.vue'
+import Aplayer from '../vue-aplayer.vue'
 
-  export default {
-    name: 'App',
-    components: {
-      Aplayer,
-    },
-    data () {
-      return {
-        version: VERSION,
-        volume: 1,
-        muted: false,
-        music3: null,
-        list3: [
-          {
-            title: '前前前世',
-            artist: 'RADWIMPS',
-            src: 'http://0.0.0.0:3000/aplayer/yourname.mp3',
-            pic: 'http://0.0.0.0:3000/aplayer/yourname.jpg',
-            lrc: 'http://0.0.0.0:3000/aplayer/yourname.lrc',
-          },
-          {
-            title: '光るなら.m3u8',
-            artist: 'Goose house',
-            src: 'http://0.0.0.0:3000/aplayer/hls/hikarunara.m3u8',
-            pic: 'http://0.0.0.0:3000/aplayer/hikarunara.jpg',
-            lrc: 'http://0.0.0.0:3000/aplayer/hikarunara.lrc',
-          },
-          {
-            title: '回レ！雪月花',
-            artist: '小倉唯',
-            src: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.mp3',
-            pic: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.jpg',
-            lrc: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.lrc',
-          },
-          {
-            title: 'あっちゅ～ま青春!',
-            artist: '七森中☆ごらく部',
-            src: 'http://0.0.0.0:3000/aplayer/yuruyuri.mp3',
-            pic: 'http://0.0.0.0:3000/aplayer/yuruyuri.jpg',
-            lrc: 'http://0.0.0.0:3000/aplayer/yuruyuri.lrc',
-          },
-        ],
-      }
+export default {
+  name: 'App',
+  components: {
+    Aplayer
+  },
+  data () {
+    return {
+      version: VERSION,
+      volume: 1,
+      muted: false,
+      music3: null,
+      list3: [
+        {
+          title: '前前前世',
+          artist: 'RADWIMPS',
+          src: 'http://0.0.0.0:3000/aplayer/yourname.mp3',
+          pic: 'http://0.0.0.0:3000/aplayer/yourname.jpg',
+          lrc: 'http://0.0.0.0:3000/aplayer/yourname.lrc'
+        },
+        {
+          title: '光るなら.m3u8',
+          artist: 'Goose house',
+          src: 'http://0.0.0.0:3000/aplayer/hls/hikarunara.m3u8',
+          pic: 'http://0.0.0.0:3000/aplayer/hikarunara.jpg',
+          lrc: 'http://0.0.0.0:3000/aplayer/hikarunara.lrc'
+        },
+        {
+          title: '回レ！雪月花',
+          artist: '小倉唯',
+          src: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.mp3',
+          pic: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.jpg',
+          lrc: 'http://0.0.0.0:3000/aplayer/snowmoonflowers.lrc'
+        },
+        {
+          title: 'あっちゅ～ま青春!',
+          artist: '七森中☆ごらく部',
+          src: 'http://0.0.0.0:3000/aplayer/yuruyuri.mp3',
+          pic: 'http://0.0.0.0:3000/aplayer/yuruyuri.jpg',
+          lrc: 'http://0.0.0.0:3000/aplayer/yuruyuri.lrc'
+        }
+      ]
     }
   }
+}
 </script>
 <style>
   html, body {

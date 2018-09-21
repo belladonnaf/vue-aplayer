@@ -8,16 +8,15 @@
 </template>
 
 <script>
-  import Icon from './aplayer-icon.vue'
+import Icon from './aplayer-icon.vue'
 
-  export default {
-    components: {
-      Icon,
-    },
-    props: ['icon'],
-  }
+export default {
+  components: {
+    Icon
+  },
+  props: ['icon']
+}
 </script>
-
 
 <style lang="scss">
   .aplayer-icon {

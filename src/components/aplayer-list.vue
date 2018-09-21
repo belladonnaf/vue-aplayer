@@ -27,35 +27,35 @@
 </template>
 
 <script>
-  export default {
-    props: {
-      show: {
-        type: Boolean,
-        default: true,
-      },
-      currentMusic: Object,
-      musicList: {
-        type: Array,
-        default () {
-          return []
-        }
-      },
-      playIndex: {
-        type: Number,
-        default: 0,
-      },
-      theme: String,
-      listmaxheight: String,
+export default {
+  props: {
+    show: {
+      type: Boolean,
+      default: true
     },
-    computed: {
-      listHeightStyle () {
-        return {
-          height: `${33 * this.musicList.length - 1}px`,
-          maxHeight: this.listmaxheight || ''
-        }
+    currentMusic: Object,
+    musicList: {
+      type: Array,
+      default () {
+        return []
+      }
+    },
+    playIndex: {
+      type: Number,
+      default: 0
+    },
+    theme: String,
+    listmaxheight: String
+  },
+  computed: {
+    listHeightStyle () {
+      return {
+        height: `${33 * this.musicList.length - 1}px`,
+        maxHeight: this.listmaxheight || ''
       }
     }
   }
+}
 </script>
 
 <style lang="scss">

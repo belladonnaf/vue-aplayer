@@ -40,8 +40,7 @@ export function parseLrc (lrc_s) {
     // sort by time
     lrc.sort((a, b) => a[0] - b[0])
     return lrc
-  }
-  else {
+  } else {
     return []
   }
 }

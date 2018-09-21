@@ -3,11 +3,11 @@
  */
 import Vue from 'vue'
 import VueAPlayer from '../vue-aplayer.vue'
-Vue.config.devtools = true
 // VueAPlayer.disableVersionBadge = true
 
 import App from './App.vue'
+Vue.config.devtools = true
 new Vue({
-    el: '#app',
-    render: h => h(App)
+  el: '#app',
+  render: h => h(App)
 })

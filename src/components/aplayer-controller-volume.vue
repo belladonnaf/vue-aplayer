@@ -24,51 +24,51 @@
 </template>
 
 <script>
-  import IconButton from './aplayer-iconbutton.vue'
-  import {getElementViewTop} from '../utils'
+import IconButton from './aplayer-iconbutton.vue'
+import {getElementViewTop} from '../utils'
 
-  const barHeight = 40
+const barHeight = 40
 
-  export default {
-    components: {
-      IconButton,
+export default {
+  components: {
+    IconButton
+  },
+  props: ['volume', 'muted', 'theme'],
+  computed: {
+    volumeIcon () {
+      if (this.muted || this.volume <= 0) return 'volume-off'
+      if (this.volume >= 1) return 'volume-up'
+      return 'volume-down'
+    }
+  },
+  methods: {
+    adjustVolume (e) {
+      let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
+      percentage = percentage > 0 ? percentage : 0
+      percentage = percentage < 1 ? percentage : 1
+      this.$emit('setvolume', percentage)
     },
-    props: ['volume', 'muted', 'theme'],
-    computed: {
-      volumeIcon () {
-        if (this.muted || this.volume <= 0) return 'volume-off'
-        if (this.volume >= 1) return 'volume-up'
-        return 'volume-down'
-      },
+    onBarMouseDown () {
+      document.addEventListener('mousemove', this.onDocumentMouseMove)
+      document.addEventListener('mouseup', this.onDocumentMouseUp)
     },
-    methods: {
-      adjustVolume (e) {
-        let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
-        percentage = percentage > 0 ? percentage : 0
-        percentage = percentage < 1 ? percentage : 1
-        this.$emit('setvolume', percentage)
-      },
-      onBarMouseDown () {
-        document.addEventListener('mousemove', this.onDocumentMouseMove)
-        document.addEventListener('mouseup', this.onDocumentMouseUp)
-      },
-      onDocumentMouseMove (e) {
-        let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
-        percentage = percentage > 0 ? percentage : 0
-        percentage = percentage < 1 ? percentage : 1
-        this.$emit('setvolume', percentage)
-      },
-      onDocumentMouseUp (e) {
-        document.removeEventListener('mouseup', this.onDocumentMouseUp)
-        document.removeEventListener('mousemove', this.onDocumentMouseMove)
+    onDocumentMouseMove (e) {
+      let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
+      percentage = percentage > 0 ? percentage : 0
+      percentage = percentage < 1 ? percentage : 1
+      this.$emit('setvolume', percentage)
+    },
+    onDocumentMouseUp (e) {
+      document.removeEventListener('mouseup', this.onDocumentMouseUp)
+      document.removeEventListener('mousemove', this.onDocumentMouseMove)
 
-        let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
-        percentage = percentage > 0 ? percentage : 0
-        percentage = percentage < 1 ? percentage : 1
-        this.$emit('setvolume', percentage)
-      }
+      let percentage = (barHeight - e.clientY + getElementViewTop(this.$refs.bar)) / barHeight
+      percentage = percentage > 0 ? percentage : 0
+      percentage = percentage < 1 ? percentage : 1
+      this.$emit('setvolume', percentage)
     }
   }
+}
 </script>
 
 <style lang="scss">

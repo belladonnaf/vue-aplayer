@@ -11,7 +11,7 @@ module.exports = {
     libraryExport: 'default',
     umdNamedDefine: true
   },
-
+  
   externals: {
     'hls.js': {
       amd: 'hls.js',

@@ -14,68 +14,68 @@
   </div>
 </template>
 <script>
-  import IconButton from './aplayer-iconbutton.vue'
+import IconButton from './aplayer-iconbutton.vue'
 
-  export default {
-    components: {
-      IconButton,
+export default {
+  components: {
+    IconButton
+  },
+  props: {
+    pic: String,
+    theme: String,
+    playing: {
+      type: Boolean,
+      default: false
     },
-    props: {
-      pic: String,
-      theme: String,
-      playing: {
-        type: Boolean,
-        default: false,
-      },
-      enableDrag: {
-        type: Boolean,
-        default: false
-      }
-    },
-    data () {
+    enableDrag: {
+      type: Boolean,
+      default: false
+    }
+  },
+  data () {
+    return {
+      hasMovedSinceMouseDown: false,
+      dragStartX: 0,
+      dragStartY: 0
+    }
+  },
+  computed: {
+    currentPicStyleObj () {
+      if (!this.pic) return {}
       return {
-        hasMovedSinceMouseDown: false,
-        dragStartX: 0,
-        dragStartY: 0
+        backgroundImage: `url(${this.pic})`,
+        backgroundColor: this.theme
+      }
+    }
+  },
+  methods: {
+    onDragBegin (e) {
+      if (this.enableDrag) {
+        this.hasMovedSinceMouseDown = false
+        this.$emit('dragbegin')
+        this.dragStartX = e.clientX
+        this.dragStartY = e.clientY
+        document.addEventListener('mousemove', this.onDocumentMouseMove)
+        document.addEventListener('mouseup', this.onDocumentMouseUp)
       }
     },
-    computed: {
-      currentPicStyleObj () {
-        if (!this.pic) return {}
-        return {
-          backgroundImage: `url(${this.pic})`,
-          backgroundColor: this.theme
-        }
-      },
+    onDocumentMouseMove (e) {
+      this.hasMovedSinceMouseDown = true
+      this.$emit('dragging', {offsetLeft: e.clientX - this.dragStartX, offsetTop: e.clientY - this.dragStartY})
     },
-    methods: {
-      onDragBegin (e) {
-        if (this.enableDrag) {
-          this.hasMovedSinceMouseDown = false
-          this.$emit('dragbegin')
-          this.dragStartX = e.clientX
-          this.dragStartY = e.clientY
-          document.addEventListener('mousemove', this.onDocumentMouseMove)
-          document.addEventListener('mouseup', this.onDocumentMouseUp)
-        }
-      },
-      onDocumentMouseMove (e) {
-        this.hasMovedSinceMouseDown = true
-        this.$emit('dragging', {offsetLeft: e.clientX - this.dragStartX, offsetTop: e.clientY - this.dragStartY})
-      },
-      onDocumentMouseUp (e) {
-        document.removeEventListener('mouseup', this.onDocumentMouseUp)
-        document.removeEventListener('mousemove', this.onDocumentMouseMove)
+    onDocumentMouseUp (e) {
+      document.removeEventListener('mouseup', this.onDocumentMouseUp)
+      document.removeEventListener('mousemove', this.onDocumentMouseMove)
 
-        this.$emit('dragend')
-      },
-      onClick () {
-        if (!this.hasMovedSinceMouseDown) {
-          this.$emit('toggleplay')
-        }
+      this.$emit('dragend')
+    },
+    onClick () {
+      if (!this.hasMovedSinceMouseDown) {
+        this.$emit('toggleplay')
       }
     }
   }
+}
 </script>
 
 <style lang="scss">
